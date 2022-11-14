@@ -45,4 +45,58 @@
 
 # !!! Pastaba: Papildomas taškas, jeigu panaudosite klases. !!!
 
-ACCOUNTS = [10, 100, 20, 50, 30]
+class Account:
+    def __init__(self, balance):
+        self.balance = balance
+        self.message_done = "Operation was successful; New account balances:" 
+        self.message_error_account = "Operation is invalid, such account does not exist; New account balances:"
+        self.message_error_balace = "Operation is invalid, not enough balance; New account balances: "
+
+    def transfer(self, i, j, summ):
+        if i >= len(self.balance) or j >= len(self.balance):
+            return (print(self.message_error_account, self.balance))
+        else:
+            self.balance[i] = self.balance[i] - summ
+            self.balance[j] = self.balance[j] + summ
+            print(self.message_done, self.balance)
+
+    def deposit(self, i, summ):
+        if i >= len(self.balance):
+            print(self.message_error_account, self.balance)
+        else:
+            self.balance[i] = self.balance[i] + summ
+            print(self.message_done, self.balance)
+
+    def withdraw(self, i, summ):
+        if i >= len(self.balance):
+            print(self.message_error_account, self.balance)
+        elif summ > self.balance[i]:
+            print(self.message_error_balace, self.balance)
+        else:
+            self.balance[i] = self.balance[i] - summ
+            print(self.message_done, self.balance)
+
+ACCOUNTS = Account([10, 100, 20, 50, 30])
+
+while True:
+    print("Input command options: ")
+    print("transfer i j sum - to transfer SUM from I to J account")
+    print("deposit i sum - to deposit SUM to I account")
+    print("withdraw i sum - to withdraw SUM from I account")
+
+    input_terminal = input().split(" ")
+    if input_terminal[0] == "transfer":
+        i = int(input_terminal[1])
+        j = int(input_terminal[2])
+        summ = int(input_terminal[3])
+        ACCOUNTS.transfer(i, j, summ)
+
+    if input_terminal[0] == "deposit":
+        i = int(input_terminal[1])
+        summ = int(input_terminal[2])
+        ACCOUNTS.deposit(i, summ)
+
+    if input_terminal[0] == "withdraw":
+        i = int(input_terminal[1])
+        summ = int(input_terminal[2])
+        ACCOUNTS.withdraw(i, summ)
