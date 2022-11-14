@@ -18,4 +18,6 @@ users = [
 
 
 def filterAdultDogOwers(users):
-  pass
+  return list(filter(lambda user: user["hasDog"] and user["age"]>= 18, users))
+  
+print(filterAdultDogOwers(users))

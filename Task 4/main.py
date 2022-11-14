@@ -21,5 +21,19 @@
 # Beje, sąraše esantis tekstas, gali būti ir skirtingo ilgio. Todėl rėmelis turėtų būti brėžiamas pagal ilgiausią saraše esantį elementą.
 
 
+canvas = ["a", "ee", "fff"]
+print("Initial list: ", canvas)
+
 def addFrame(canvas):
-  pass
+  if len(canvas) == 0 or not any(canvas) == True:
+    return print("Error: empty canvas provided")
+  else:
+    canvas_with_frame = canvas.copy()
+    for index, item in enumerate(canvas_with_frame):
+      canvas_with_frame[index] = "*" + item + "*"
+    frame = "*" * (len(max(canvas_with_frame, key=len)))
+    canvas_with_frame.insert(0, frame)
+    canvas_with_frame.append(frame)
+    return print("Framed list: ", canvas_with_frame)
+    
+addFrame(canvas)

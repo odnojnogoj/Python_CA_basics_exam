@@ -18,10 +18,16 @@ users = [
   { "id": '9', "name": 'Daniel Cane', "age": 51 },
 ]
 
+from statistics import median
 
 def getUserMedianAge(users):
-  pass
+  return median([x["age"] for x in users])
 
+print(getUserMedianAge(users))
 
 def getOldestUser(users):
-  pass
+  age = max([x["age"] for x in users])
+  oldest = list(filter(lambda user: user["age"] == age, users))
+  return oldest[0]["name"]
+
+print(getOldestUser(users))
