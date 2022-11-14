@@ -55,6 +55,8 @@ class Account:
     def transfer(self, i, j, summ):
         if i >= len(self.balance) or j >= len(self.balance):
             return (print(self.message_error_account, self.balance))
+        elif summ > self.balance[i]:
+            print(self.message_error_balace, self.balance)
         else:
             self.balance[i] = self.balance[i] - summ
             self.balance[j] = self.balance[j] + summ
